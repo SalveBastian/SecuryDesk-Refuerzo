@@ -1,6 +1,5 @@
+import { API } from './config.js';
 import { renderRoleMenu } from './src/components/RoleMenu.js';
-
-const API = 'http://localhost:4000';
 let token = null;
 let currentUser = null;
 
