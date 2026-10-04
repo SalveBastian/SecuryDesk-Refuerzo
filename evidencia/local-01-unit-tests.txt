@@ -3,78 +3,78 @@
 > node --test tests/*.test.js
 
 TAP version 13
-# [SECURITY] {"timestamp":"2026-09-21T18:52:42.998Z","event":"AUTHORIZATION_DENIED","reason":"no_authenticated_user"}
-# [SECURITY] {"timestamp":"2026-09-21T18:52:43.000Z","event":"AUTHORIZATION_DENIED","role":"CONSULTA","allowedRoles":["ADMIN"]}
+# [SECURITY] {"timestamp":"2026-09-21T18:53:15.904Z","event":"AUTHORIZATION_DENIED","reason":"no_authenticated_user"}
+# [SECURITY] {"timestamp":"2026-09-21T18:53:15.906Z","event":"AUTHORIZATION_DENIED","role":"CONSULTA","allowedRoles":["ADMIN"]}
 # Subtest: sin usuario devuelve 401
 ok 1 - sin usuario devuelve 401
   ---
-  duration_ms: 2.333757
+  duration_ms: 1.665745
   type: 'test'
   ...
 # Subtest: rol no autorizado devuelve 403
 ok 2 - rol no autorizado devuelve 403
   ---
-  duration_ms: 0.272563
+  duration_ms: 0.166091
   type: 'test'
   ...
 # Subtest: rol autorizado continúa
 ok 3 - rol autorizado continúa
   ---
-  duration_ms: 0.220935
+  duration_ms: 0.138059
   type: 'test'
   ...
 # Subtest: notFound devuelve 404 con método y ruta
 ok 4 - notFound devuelve 404 con método y ruta
   ---
-  duration_ms: 0.68651
+  duration_ms: 0.6599
   type: 'test'
   ...
 # Subtest: errorHandler no expone mensaje interno cuando es 500
 ok 5 - errorHandler no expone mensaje interno cuando es 500
   ---
-  duration_ms: 0.576634
+  duration_ms: 0.584446
   type: 'test'
   ...
 # Subtest: sanitizeText elimina etiquetas HTML y caracteres angulares
 ok 6 - sanitizeText elimina etiquetas HTML y caracteres angulares
   ---
-  duration_ms: 1.029229
+  duration_ms: 0.716025
   type: 'test'
   ...
 # Subtest: sanitizeText elimina caracteres de control
 ok 7 - sanitizeText elimina caracteres de control
   ---
-  duration_ms: 0.221456
+  duration_ms: 0.129686
   type: 'test'
   ...
 # Subtest: sanitizeObject limpia valores anidados
 ok 8 - sanitizeObject limpia valores anidados
   ---
-  duration_ms: 0.846513
+  duration_ms: 0.721284
   type: 'test'
   ...
 # Subtest: maskEmail oculta el correo preservando dominio
 ok 9 - maskEmail oculta el correo preservando dominio
   ---
-  duration_ms: 0.354978
+  duration_ms: 0.218301
   type: 'test'
   ...
 # Subtest: securityLogger no incluye claves sensibles conocidas
 ok 10 - securityLogger no incluye claves sensibles conocidas
   ---
-  duration_ms: 1.042059
+  duration_ms: 1.415886
   type: 'test'
   ...
 # Subtest: validate rechaza datos inválidos con 400 y detalles controlados
 ok 11 - validate rechaza datos inválidos con 400 y detalles controlados
   ---
-  duration_ms: 1.059125
+  duration_ms: 1.75516
   type: 'test'
   ...
 # Subtest: validate reemplaza el target por los datos normalizados
 ok 12 - validate reemplaza el target por los datos normalizados
   ---
-  duration_ms: 0.186813
+  duration_ms: 0.286674
   type: 'test'
   ...
 1..12
@@ -85,4 +85,4 @@ ok 12 - validate reemplaza el target por los datos normalizados
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 110.27162
+# duration_ms 107.128003

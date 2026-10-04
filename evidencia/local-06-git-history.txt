@@ -1,0 +1,19 @@
+SecureDesk ADSO - historial Git preparado para entrega
+
+* 1181e3d | Maicol Ospina <jksdappe12@gmail.com> | test: record local verification evidence
+* b85b35c | Maicol Ospina <jksdappe12@gmail.com> | ci: add PostgreSQL security evidence workflow
+* 2024d02 | Maicol Ospina <jksdappe12@gmail.com> | docs: complete plan de mejoramiento documentation
+* caecda1 | Maicol Ospina <jksdappe12@gmail.com> | test: add reproducible security and preproduction checks
+* 460dc20 | Maicol Ospina <jksdappe12@gmail.com> | feat: add backup restore and integrity controls
+* 3675ceb | Maicol Ospina <jksdappe12@gmail.com> | feat: implement SecureDesk secure core
+
+Ramas:
+* main              1181e3d test: record local verification evidence
+  plan-mejoramiento 1181e3d test: record local verification evidence
+
+Etiquetas:
+plan-mejoramiento-v1.0 Plan de mejoramiento SecureDesk ADSO v1.0
+
+Remote:
+origin	https://github.com/MaicolIR33/SecureDesk-ADSO-3229209.git (fetch)
+origin	https://github.com/MaicolIR33/SecureDesk-ADSO-3229209.git (push)
