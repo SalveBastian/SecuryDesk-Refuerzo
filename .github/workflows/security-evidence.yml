@@ -1,0 +1,124 @@
+name: SecureDesk security evidence
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, plan-mejoramiento]
+
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: securedesk
+          POSTGRES_PASSWORD: securedesk
+          POSTGRES_DB: securedesk
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U securedesk -d securedesk"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      NODE_ENV: test
+      PORT: 4000
+      DATABASE_URL: postgresql://securedesk:securedesk@localhost:5432/securedesk?schema=public
+      JWT_SECRET: github-actions-securedesk-evidence-secret-2026-only-test
+      JWT_EXPIRES_IN: 1h
+      RATE_LIMIT_WINDOW_MS: 60000
+      RATE_LIMIT_MAX: 80
+      LOGIN_RATE_LIMIT_MAX: 20
+      CORS_ORIGIN: '*'
+      BACKUP_RETENTION_DAYS: 7
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Create database schema
+        run: npx prisma db push
+
+      - name: Seed database
+        run: npm run seed
+
+      - name: Unit tests
+        run: npm test | tee ../unit-tests-ci.txt
+
+      - name: Start API and capture logs
+        run: |
+          npm start > ../artifacts-api.log 2>&1 &
+          echo $! > ../api.pid
+          for i in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4000/health >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat ../artifacts-api.log
+          exit 1
+
+      - name: Run HTTP evidence suite
+        env:
+          EVIDENCE_DIR: ${{ github.workspace }}/artifacts/evidencia
+        run: npm run evidence | tee ../http-evidence-ci.txt
+
+      - name: PostgreSQL backup with checksum
+        run: |
+          mkdir -p ../artifacts/backup
+          BACKUP_DIR="${{ github.workspace }}/artifacts/backup" bash scripts/backup.sh | tee ../artifacts/backup/backup-command.txt
+          BACKUP_FILE=$(find ../artifacts/backup -name 'securedesk_*.dump' -type f | head -1)
+          test -n "$BACKUP_FILE"
+          test -s "$BACKUP_FILE"
+          ls -lh "$BACKUP_FILE" | tee ../artifacts/backup/backup-size.txt
+          echo "$BACKUP_FILE" > ../backup-file.txt
+
+      - name: Prove restore after controlled data damage
+        run: |
+          BACKUP_FILE=$(cat ../backup-file.txt)
+          BEFORE=$(psql "$DATABASE_URL" -Atc 'select count(*) from "Incident";')
+          echo "before=$BEFORE" | tee ../artifacts/backup/restore-verification.txt
+          psql "$DATABASE_URL" -c 'delete from "Incident";' >/dev/null
+          AFTER_DELETE=$(psql "$DATABASE_URL" -Atc 'select count(*) from "Incident";')
+          echo "after_delete=$AFTER_DELETE" | tee -a ../artifacts/backup/restore-verification.txt
+          bash scripts/restore.sh "$BACKUP_FILE" | tee -a ../artifacts/backup/restore-verification.txt
+          AFTER_RESTORE=$(psql "$DATABASE_URL" -Atc 'select count(*) from "Incident";')
+          echo "after_restore=$AFTER_RESTORE" | tee -a ../artifacts/backup/restore-verification.txt
+          test "$AFTER_DELETE" = "0"
+          test "$AFTER_RESTORE" = "$BEFORE"
+
+      - name: Save application and test logs
+        if: always()
+        run: |
+          mkdir -p ../artifacts/logs
+          cp ../artifacts-api.log ../artifacts/logs/morgan-and-security.log || true
+          cp ../unit-tests-ci.txt ../artifacts/logs/unit-tests-ci.txt || true
+          cp ../http-evidence-ci.txt ../artifacts/logs/http-evidence-ci.txt || true
+          kill $(cat ../api.pid) || true
+
+      - name: Upload evidence artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: securedesk-evidence
+          path: artifacts/
+          if-no-files-found: error
+          retention-days: 7
