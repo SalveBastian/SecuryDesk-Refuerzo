@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SecureDesk ADSO</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">Seguridad Informática · Ficha 3229209</p>
+      <h1>SecureDesk ADSO</h1>
+    </div>
+    <span id="sessionBadge" class="badge">Sin sesión</span>
+  </header>
+
+  <main class="layout">
+    <section class="card">
+      <h2>Inicio de sesión</h2>
+      <form id="loginForm">
+        <label>Correo <input id="email" type="email" placeholder="usuario@securedesk.local" autocomplete="username" required></label>
+        <label>Contraseña <input id="password" type="password" autocomplete="current-password" required></label>
+        <button type="submit">Ingresar</button>
+      </form>
+      <p id="loginResult" class="result"></p>
+    </section>
+
+    <nav class="card" aria-label="Opciones según rol">
+      <h2>Opciones según rol</h2>
+      <div id="roleMenu" class="menu"></div>
+    </nav>
+
+    <section class="card wide">
+      <div class="section-title">
+        <h2>Incidentes</h2>
+        <button id="loadIncidents" type="button" disabled>Actualizar</button>
+      </div>
+      <pre id="incidentsOutput">Inicia sesión para consultar incidentes.</pre>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

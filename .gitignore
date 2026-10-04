@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Runtime output
+artifacts/
+backend/artifacts/
+backend/backups/*.dump
+backend/backups/*.sha256
+backend/backups/*.sql
+*.log
+*.pid
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Test/coverage output
+coverage/
