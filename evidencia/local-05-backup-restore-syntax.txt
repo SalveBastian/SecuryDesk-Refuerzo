@@ -1,0 +1,5 @@
+Verificación sintáctica de scripts de continuidad
+OK backup.sh
+OK restore.sh
+
+Nota: la ejecución real de pg_dump/pg_restore requiere PostgreSQL y se automatiza en GitHub Actions.
