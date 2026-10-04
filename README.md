@@ -10,7 +10,7 @@ Proyecto integrador para la competencia **Seguridad informática** de la ficha *
 - **Repositorio:** https://github.com/SalveBastian/SecuryDesk-Refuerzo.git
 - **Rama de entrega:** `plan-mejoramiento`
 - **Video técnico:** pendiente de grabación/publicación por el aprendiz
-- **Sustentación:** pendiente de programación con el instructor
+- **Sustentación:** Lunes 5 de octubre
 
 ## 1. Qué es SecureDesk
 
