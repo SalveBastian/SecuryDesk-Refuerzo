@@ -1,33 +1,36 @@
 export function menuItemsForRole(role) {
   const common = [
-    { label: 'Consultar incidentes', href: '#incidents' }
+    { id: 'incidents', label: 'Consultar incidentes' }
   ];
 
   if (role === 'ADMIN') {
     return [
       ...common,
-      { label: 'Crear incidente', href: '#new-incident' },
-      { label: 'Administrar usuarios', href: '#users' },
-      { label: 'Panel administrativo', href: '#admin' }
+      { id: 'new-incident', label: 'Crear incidente' },
+      { id: 'users', label: 'Administrar usuarios' },
+      { id: 'admin', label: 'Panel administrativo' }
     ];
   }
 
   if (role === 'ANALISTA') {
     return [
       ...common,
-      { label: 'Crear incidente', href: '#new-incident' }
+      { id: 'new-incident', label: 'Crear incidente' }
     ];
   }
 
   return common;
 }
 
-export function renderRoleMenu(container, role) {
+export function renderRoleMenu(container, role, onSelect) {
   container.replaceChildren();
   for (const item of menuItemsForRole(role)) {
-    const anchor = document.createElement('a');
-    anchor.href = item.href;
-    anchor.textContent = item.label;
-    container.append(anchor);
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'menu-button';
+    button.dataset.panel = item.id;
+    button.textContent = item.label;
+    button.addEventListener('click', () => onSelect(item.id));
+    container.append(button);
   }
 }

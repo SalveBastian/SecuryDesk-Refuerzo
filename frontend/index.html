@@ -31,12 +31,72 @@
       <div id="roleMenu" class="menu"></div>
     </nav>
 
-    <section class="card wide">
+    <section id="panel-incidents" class="card wide">
       <div class="section-title">
-        <h2>Incidentes</h2>
+        <div>
+          <h2>Consultar incidentes</h2>
+          <p id="incidentsHint" class="hint">Inicia sesión para consultar incidentes.</p>
+        </div>
         <button id="loadIncidents" type="button" disabled>Actualizar</button>
       </div>
-      <pre id="incidentsOutput">Inicia sesión para consultar incidentes.</pre>
+      <div class="filters">
+        <label>Buscar
+          <input id="filterQuery" type="search" placeholder="Título o descripción" disabled>
+        </label>
+        <label>Severidad
+          <select id="filterSeverity" disabled>
+            <option value="">Todas</option>
+            <option value="LOW">Baja</option>
+            <option value="MEDIUM">Media</option>
+            <option value="HIGH">Alta</option>
+            <option value="CRITICAL">Crítica</option>
+          </select>
+        </label>
+        <label>Estado
+          <select id="filterStatus" disabled>
+            <option value="">Todos</option>
+            <option value="OPEN">Abierto</option>
+            <option value="IN_PROGRESS">En progreso</option>
+            <option value="RESOLVED">Resuelto</option>
+            <option value="CLOSED">Cerrado</option>
+          </select>
+        </label>
+      </div>
+      <div id="incidentsList" class="incident-list"></div>
+    </section>
+
+    <section id="panel-new-incident" class="card wide" hidden>
+      <h2>Crear incidente</h2>
+      <form id="incidentForm">
+        <label>Título <input id="incidentTitle" type="text" minlength="5" maxlength="120" required></label>
+        <label>Descripción <textarea id="incidentDescription" minlength="10" maxlength="1000" required></textarea></label>
+        <label>Severidad
+          <select id="incidentSeverity" required>
+            <option value="LOW">Baja</option>
+            <option value="MEDIUM" selected>Media</option>
+            <option value="HIGH">Alta</option>
+            <option value="CRITICAL">Crítica</option>
+          </select>
+        </label>
+        <button type="submit">Registrar incidente</button>
+      </form>
+      <p id="incidentResult" class="result"></p>
+    </section>
+
+    <section id="panel-users" class="card wide" hidden>
+      <div class="section-title">
+        <h2>Administrar usuarios</h2>
+        <button id="loadUsers" type="button">Actualizar</button>
+      </div>
+      <div id="usersList"></div>
+    </section>
+
+    <section id="panel-admin" class="card wide" hidden>
+      <div class="section-title">
+        <h2>Panel administrativo</h2>
+        <button id="adminPing" type="button">Comprobar acceso</button>
+      </div>
+      <p id="adminResult" class="result">Esta ruta solo responde 200 si el token pertenece a un ADMIN.</p>
     </section>
   </main>
 
