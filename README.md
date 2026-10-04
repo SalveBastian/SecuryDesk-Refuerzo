@@ -2,12 +2,12 @@
 
 Proyecto integrador para la competencia **Seguridad informática** de la ficha **3229209**.
 
-- **Aprendiz:** Maicol Andres Ospina
-- **Identificación:** 1032180362
+- **Aprendiz:** Sebastian Monsalve Ramos
+- **Identificación:** 11040571334
 - **Instructor:** Gustavo Bolaños
 - **Fecha de asignación:** 21 de septiembre de 2026
 - **Fecha límite:** 1 de octubre de 2026, 11:59 p. m. (Colombia)
-- **Repositorio:** https://github.com/MaicolIR33/SecureDesk-ADSO-3229209
+- **Repositorio:** https://github.com/SalveBastian/SecuryDesk-Refuerzo.git
 - **Rama de entrega:** `plan-mejoramiento`
 - **Video técnico:** pendiente de grabación/publicación por el aprendiz
 - **Sustentación:** pendiente de programación con el instructor
