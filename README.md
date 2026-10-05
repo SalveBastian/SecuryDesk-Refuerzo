@@ -9,8 +9,9 @@ Proyecto integrador para la competencia **Seguridad informática** de la ficha *
 - **Fecha límite:** 1 de octubre de 2026, 11:59 p. m. (Colombia)
 - **Repositorio:** https://github.com/SalveBastian/SecuryDesk-Refuerzo.git
 - **Rama de entrega:** `plan-mejoramiento`
-- **Video técnico:** pendiente de grabación/publicación por el aprendiz
+- **Video técnico:** https://youtu.be/9tsHDOQL9No 
 - **Sustentación:** Lunes 5 de octubre
+- **Link del aplicativo:** https://securydesk-refuerzo-1.onrender.com
 
 ## 1. Qué es SecureDesk
 
