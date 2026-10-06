@@ -1,10 +1,10 @@
 # Guion técnico para video obligatorio (15 a 20 minutos)
 
-> Este guion prepara todo el contenido. La grabación y narración deben realizarlas personalmente Maicol Andres Ospina, porque la actividad exige que el aprendiz explique el proyecto.
+> Este guion prepara todo el contenido. La grabación y narración deben realizarlas personalmente Sebastian Monsalve Ramos, porque la actividad exige que el aprendiz explique el proyecto.
 
 ## 0:00 - 1:00 | Presentación y problema
 
-- Nombre, identificación 1032180362, ficha 3229209.
+- Nombre, identificación 1040571334, ficha 3229209.
 - Competencia: Seguridad informática.
 - Explicar que SecureDesk registra incidentes y se usa para demostrar una implantación segura.
 - Mostrar el README y la URL del repositorio.
